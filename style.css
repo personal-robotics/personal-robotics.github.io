@@ -1,0 +1,109 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+.side-nav {
+    position: fixed; /* Fixed position */
+    border-radius: 15px; /* Adjust this value to increase or decrease the roundness */
+    top: 20%; /* Center vertically */
+    left: 0; /* Place it on the left side */
+    transform: translateY(-50%); /* Adjust vertical position */
+    background-color: rgb(29, 11, 132, 0.7); /* Background color */
+    border: 1px solid #020101; /* Border (optional) */
+    padding: 10px;
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+.side-nav ul {
+    list-style: none; /* Remove default list styling */
+    padding: 0;
+    margin: 0;
+}
+
+.side-nav ul li a {
+    display: block;
+    padding: 10px;
+    text-decoration: none; /* Remove underline from links */
+    color: #33b70c; /* Text color */
+}
+
+.side-nav ul li a:hover {
+    background-color: #dc1616; /* Hover effect */
+}
+
+.full-screen {
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff; /* Change as needed */
+}
+
+.split-screen {
+    display: flex;
+    height: 100vh;
+}
+
+.split {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff; /* Change as needed */
+}
+
+.content {
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .split {
+        width: 100%;
+        height: 50%;
+    }
+}
+.logo {
+    max-width: 150px; /* Adjust the size as needed */
+    height: auto; /* Keeps the aspect ratio of the image */
+}
+.personal_robotics {
+    max-width: 1000px; 
+    height: auto; 
+}
+.face {
+    max-width: 200px; /* Adjust the size as needed */
+    max-height: 200px;
+    height: auto; /* Keeps the aspect ratio of the image */
+
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.table-red {
+    background-color: rgba(127, 5, 5, 0.55); /* Red semi-transparent background */
+}
+
+.table-green {
+    background-color: rgba(5, 26, 5, 0.816); /* Green semi-transparent background */
+}
+
+.table-blue {
+    background-color: rgba(1, 1, 37, 0.716); /* Blue semi-transparent background */
+}
+.table-yellow {
+    background-color: rgba(55, 94, 0, 0.716);
+}
+th, td {
+    padding: 0px;
+    text-align: left;
+    border-bottom: 1px solid #000000;
+}
+
+thead {
+    background-color: #540a0acf;
+}
