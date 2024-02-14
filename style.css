@@ -24,15 +24,15 @@ body, html {
 }
 
 .side-nav ul {
-    list-style: none; /* Remove default list styling */
     padding: 0;
-    margin: 0;
-}
+} 
 
 .side-nav ul li a {
     display: block;
-    padding: 10px;
+    padding: 0px;
+    margin: 0;
     text-decoration: none; /* Remove underline from links */
+    list-style: none; /* Remove default list styling */
     color: #33b70c; /* Text color */
 }
 
@@ -75,11 +75,11 @@ body, html {
     }
 }
 .logo {
-    max-width: 150px; /* Adjust the size as needed */
+    max-width: 7%; /* Adjust the size as needed */
     height: auto; /* Keeps the aspect ratio of the image */
 }
 .personal_robotics {
-    max-width: 1000px; 
+    max-width: 70%; 
     height: auto; 
 }
 .face {
@@ -89,7 +89,7 @@ body, html {
 
 }
 table {
-    width: 100%;
+    width: 80%;
     border-collapse: collapse;
 }
 .table-red {
