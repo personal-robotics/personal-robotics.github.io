@@ -1,3 +1,5 @@
 personal-robotics.github.io
 
-Personal Robotics Homepage
+This is the homepage for personalrobotics.eu
+
+
