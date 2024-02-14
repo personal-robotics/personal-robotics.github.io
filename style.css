@@ -1,8 +1,16 @@
 body, html {
+    background-color: #000000;
     margin: 0;
     padding: 0;
     height: 100%;
+    font-family: 'Workbench';
+    }
+    
+@font-face {
+    font-family: 'Workbench';
+    src: url('/fonts/Workbench-Regular.ttf') format('truetype'),
 }
+
 .side-nav {
     position: fixed; /* Fixed position */
     border-radius: 15px; /* Adjust this value to increase or decrease the roundness */
