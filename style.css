@@ -8,7 +8,14 @@ body, html {
     
 @font-face {
     font-family: 'Workbench';
-    src: url('/fonts/Workbench-Regular.ttf') format('truetype'),
+    src: url('/fonts/Workbench-Regular.ttf') format('truetype');
+
+    font-family: 'Readable';
+    src: url('/fonts/Orbitron-VariableFont_wght.ttf') format('truetype');
+}
+p {
+    font-family: 'Readable', sans-serif;
+    font-size: 12px; /* Default font size */
 }
 
 .side-nav {
@@ -83,13 +90,14 @@ body, html {
     height: auto; 
 }
 .face {
-    max-width: 200px; /* Adjust the size as needed */
-    max-height: 200px;
+    width: 90%; /* Adjust the size as needed */
     height: auto; /* Keeps the aspect ratio of the image */
-
+ /*   max-height: 80%;
+ /*   display: block; /* removes any default inline spacing */
 }
 table {
     width: 80%;
+    max-height: 10%;
     border-collapse: collapse;
 }
 .table-red {
@@ -113,5 +121,24 @@ th, td {
 }
 
 thead {
-    background-color: #540a0acf;
+    background-color: #3002a6a0;
+}
+
+.table-container {
+    display: flex;
+    flex-wrap: wrap; /* This allows the items to wrap onto the next line */
+    justify-content: 2%; /* Adjusts the space between the tables */
+    background-color: rgba(1, 1, 37, 0.716); 
+}
+
+.responsive-table {
+    flex: 1; /* This allows the tables to grow and fill the container */
+    margin: 0%; /* Optional: Adds some space around each table */
+}
+
+/* Media query for smaller screens - adjust 'max-width' as needed */
+@media screen and (max-width: 600px) {
+    .responsive-table {
+        flex-basis: 100%; /* On small screens, take up full container width */
+    }
 }
