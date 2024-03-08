@@ -3,7 +3,7 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: 'Workbench';
+    font-family: 'Workbench', sans-serif;
     }
     
 @font-face {
@@ -112,7 +112,7 @@ table {
     background-color: rgba(1, 1, 37, 0.716); /* Blue semi-transparent background */
 }
 .table-yellow {
-    background-color: rgba(55, 94, 0, 0.716);
+    background-color: rgba(26, 42, 3, 0.716);
 }
 th, td {
     padding: 0px;

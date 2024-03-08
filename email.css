@@ -1,0 +1,8 @@
+.email-link-container {
+    position: relative;
+  }
+  
+  .email-link {
+    position: absolute;
+    left: -9999px;
+  }
