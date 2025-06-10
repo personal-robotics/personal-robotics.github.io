@@ -1,0 +1,986 @@
+/* Local font declaration */
+@font-face {
+    font-family: 'VT323';
+    src: local('VT323 Regular'),
+         local('VT323-Regular'),
+         url('fonts/VT323-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+/* Theme Variables - Modify these to change the color scheme */
+:root {
+    --primary-color: #00ff9f;  /* Accent color for highlights and effects */
+    --secondary-color: #00b8ff;  /* Secondary accent color */
+    --bg-color: rgba(16, 16, 24, 0.9);  /* Main background color with transparency */
+    --text-glow: 0 0 10px var(--primary-color);  /* Text glow effect */
+}
+
+/* Base Styles - Resets and sets up the basic styling for the document */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;  /* Ensures consistent box model across browsers */
+}
+
+/* Base body styles - Sets up the retro terminal look */
+body {
+    font-family: 'VT323', monospace;  /* Retro terminal font */
+    color: var(--primary-color);  /* Main text color */
+    min-height: 100vh;  /* Ensures the body takes up the full viewport height */
+    overflow: hidden;  /* Hides any content that overflows the body */
+    background: black; /* Start with black background */
+}
+
+/* Background Styles - Sets up the fixed background image */
+.background {
+    position: fixed;  /* Keeps the background fixed in place */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('Backgrounds/background01.jpg') no-repeat center center fixed; /* Ensure this path is correct */
+    background-size: cover;
+    z-index: -1;
+    opacity: 0;
+    animation: fadeIn 1s ease-in forwards;
+    animation-delay: 0.5s; /* Start after initial black screen */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* CRT Monitor Container - Main wrapper for the entire interface */
+.crt-monitor {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 98%;                /* Almost full width */
+    max-width: 1600px;        /* Maximum width to maintain readability */
+    height: 85vh;             /* Viewport-relative height */
+    background: var(--bg-color);
+    border-radius: 20px;      /* Rounded corners for CRT look */
+    padding: 20px;
+    box-shadow:               /* Multi-layered shadow for depth */
+        0 0 0 2px #333,      /* Inner border */
+        0 0 0 4px #666,      /* Outer border */
+        0 0 20px rgba(0, 255, 159, 0.3),    /* Outer glow */
+        inset 0 0 20px rgba(0, 255, 159, 0.1); /* Inner glow */
+    animation: monitorAppear 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation-delay: 1.5s; /* Start after background fade */
+}
+
+@keyframes monitorAppear {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        border-radius: 50%;
+        opacity: 0;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(0.2);
+        border-radius: 40%;
+        opacity: 0.5;
+    }
+    70% {
+        transform: translate(-50%, -50%) scale(0.8);
+        border-radius: 25px;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        border-radius: 20px;
+        opacity: 1;
+    }
+}
+
+.monitor-content {
+    position: relative;
+    height: 100%;
+    border: 2px solid var(--primary-color);
+    padding: 20px;
+    clip-path: inset(0 0 0 0);
+    opacity: 0;
+    animation: contentFadeIn 0.5s ease-out forwards;
+    animation-delay: 2.3s; /* Start after monitor appears */
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 255, 65, 0.02);
+}
+
+@keyframes contentFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Logo Styles - Both text and symbol logos */
+.header-logo {
+    text-align: center;
+    padding: 10px 0;
+    flex-shrink: 0;
+}
+
+.text-logo {
+    max-width: 600px;         /* Slightly smaller for better spacing */
+    height: auto;
+    filter: brightness(0) invert(1) sepia(100%) saturate(1000%) hue-rotate(70deg); /* Creates the green glow effect */
+}
+
+.symbol-logo {
+    text-align: center;
+    padding: 0;
+    flex-shrink: 0;
+    margin: 0;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.symbol {
+    width: 100px;
+    height: 100px;
+    filter: brightness(0) invert(1) sepia(100%) saturate(1000%) hue-rotate(70deg); /* Matches text logo color */
+    margin: 5px 0;
+}
+
+/* Navigation Menu - Sticky menu with retro borders */
+.nav-menu {
+    position: sticky;         /* Stays at top during scroll */
+    top: 0;
+    padding: 8px 0;
+    margin: 10px 0;
+    z-index: 100;            /* Keeps menu above other content */
+    flex-shrink: 0;
+}
+
+.nav-menu ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Flickering animation for links */
+@keyframes flicker-underline {
+    0% { border-bottom-color: var(--primary-color); }
+    92% { border-bottom-color: var(--primary-color); }
+    94% { border-bottom-color: transparent; }
+    96% { border-bottom-color: var(--primary-color); }
+    98% { border-bottom-color: transparent; }
+    100% { border-bottom-color: var(--primary-color); }
+}
+
+/* Global link styles */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    border-bottom: 1px solid var(--primary-color);
+    font-style: italic;
+    animation: flicker-underline 4s infinite;
+}
+
+a:hover {
+    text-shadow: 0 0 5px var(--primary-color);
+    animation: flicker-underline 1s infinite;
+}
+
+/* Navigation specific styles */
+.nav-menu a {
+    font-style: normal;
+    font-size: 1.2em;
+    border-bottom: none;
+    animation: none;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    text-shadow: 0 0 10px var(--primary-color);
+    border-bottom: 1px solid var(--primary-color);
+    animation: flicker-underline 0.8s infinite;
+}
+
+/* Legal links specific styles (within .legal-content) */
+.legal-content .legal-links {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.legal-content .legal-links a,
+.legal-content .legal-links a:visited,
+.legal-content .legal-links a:link {
+    font-size: 1.1em;
+    color: var(--primary-color) !important; /* Override global 'a' color if needed */
+    border-bottom: 1px solid var(--primary-color);
+    animation: flicker-underline 3s infinite;
+    text-decoration: none;
+    cursor: pointer; /* Ensure cursor indicates clickability */
+}
+
+.legal-content .legal-links a:hover {
+    animation: flicker-underline 0.8s infinite;
+    color: var(--primary-color) !important;
+    text-shadow: 0 0 5px var(--primary-color);
+}
+
+/* Fixed header area */
+.header-area {
+    flex-shrink: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* Content container */
+.screen-wrapper {
+    flex: 1;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 300px; /* Ensure it has some height even if content is small */
+    position: relative;
+}
+
+/* Scrollable section container */
+/* Hide scrollbar but allow scrolling */
+.section {
+    display: none;
+    height: 100%;
+    overflow-y: auto;
+    /* flex-direction: column; /* Re-added for content flow like hero */
+    /* justify-content: center; */ /* Commented out if text isn't always centered */
+    /* align-items: center; */ /* Commented out if text isn't always centered */
+    /* text-align: center; */ /* Commented out if text isn't always centered */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    padding: 15px; /* Added some padding within sections */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.section::-webkit-scrollbar {
+    display: none;
+}
+
+.section.active {
+    display: flex; /* Changed to flex for internal alignment options */
+    flex-direction: column; /* Default flow for content within active section */
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+}
+
+.section.turn-off {
+    animation: turn-off 0.5s;
+}
+
+.section.turn-on {
+    animation: turn-on 0.5s;
+}
+
+h1 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    text-shadow: var(--text-glow);
+    text-align: center;
+}
+
+/* Hero section specific alignment - if needed */
+.hero-section {
+    justify-content: center; /* Center content vertically */
+    align-items: center;     /* Center content horizontally */
+    text-align: center;      /* Center text */
+}
+.hero-content {
+    height: 100%;
+    max-width: 800px;
+    margin: 0 auto; /* Center the content block if max-width is hit */
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-content h1 { /* Specific to hero if different from global h1 */
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    text-shadow: var(--text-glow);
+    text-align: center;
+}
+
+.manifesto-text {
+    text-align: left;
+    font-size: 1.2em;
+    line-height: 1.4;
+    margin-bottom: auto; /* Pushes CTA buttons down if hero-content is flex */
+}
+
+.manifesto-text p {
+    margin: 0.5em 0;
+    opacity: 0.9;
+}
+
+.manifesto-text p:hover {
+    opacity: 1;
+    text-shadow: var(--text-glow);
+}
+
+.text-content {
+    margin: 20px 0;
+    font-size: 1.5em;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.blink {
+    animation: blink 1s infinite;
+    font-size: 1.2em;
+    margin: 20px 0;
+}
+
+.button {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 10px;
+    font-family: 'VT323', monospace;
+    font-size: 1.2em;
+    text-decoration: none;
+    border: 2px solid;
+    transition: all 0.3s ease;
+}
+
+.primary-button {
+    color: var(--bg-color);
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.primary-button:hover {
+    background: transparent;
+    color: var(--primary-color);
+}
+
+.secondary-button {
+    color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    background: transparent;
+}
+
+.secondary-button:hover {
+    background: var(--secondary-color);
+    color: var(--bg-color);
+}
+
+.cta-buttons {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.signup-form {
+    width: 100%;
+    max-width: 500px;
+    margin: 20px 0;
+}
+
+.form-group {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+input[type="email"] {
+    flex: 1;
+    padding: 12px;
+    font-family: 'VT323', monospace;
+    font-size: 1.2em;
+    background: rgba(0, 255, 159, 0.1);
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+input[type="email"]::placeholder {
+    color: rgba(0, 255, 159, 0.5);
+}
+
+.social-links {
+    margin: 30px 0;
+}
+
+.social-links a {
+    color: var(--primary-color);
+    font-size: 2em;
+    margin: 0 15px;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--secondary-color);
+    text-shadow: var(--text-glow);
+}
+
+/* CRT Scanline Effect - Creates the rolling scanline animation */
+.scanline {
+    width: 100%;
+    height: 100px;            /* Height of the scanline */
+    z-index: 8;              /* Keeps it above content but below navigation */
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 255, 159, 0.2) 10%,  /* Stronger at the top */
+        rgba(0, 255, 159, 0.1) 50%,  /* Fades in middle */
+        transparent 90%              /* Fades to bottom */
+    );
+    opacity: 0.1;
+    position: absolute;
+    top: -100px;             /* Starts above the viewport */
+    animation: scanline 8s linear infinite;
+    pointer-events: none;     /* Prevents interference with clicks */
+}
+
+/* Robots Section */
+.robots-content { /* Assuming this class is used in robots.html */
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left; /* Or center, depending on design */
+}
+
+.robots-content h1 { /* Specific for robots.html if needed */
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.robots-content h2 {
+    color: var(--primary-color); /* Using primary, neon-green isn't defined */
+    margin: 40px 0 20px;
+}
+
+/* Legal Section Specific styles */
+.legal-section { /* Styles for the #legal section container */
+    min-height: auto; /* Override if sections have min-height */
+    padding: 20px;
+    text-align: left; /* Usually legal text is left aligned */
+}
+.legal-content { /* Styles for the div inside legal.html */
+    max-width: 800px; /* Readable width for legal text */
+    margin: 0 auto; /* Center the content block */
+}
+.legal-content h2, .legal-content h3 {
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+.legal-content p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+.legal-section a { /* Links inside the legal section content (not modal trigger links) */
+    color: var(--secondary-color);
+    text-decoration: none;
+    /* animation: none; If you don't want these to flicker */
+}
+
+.legal-section a:hover {
+    text-shadow: 0 0 10px var(--secondary-color);
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Scanline Animation - Moves the scanline from top to bottom */
+@keyframes scanline {
+    0% {
+        transform: translateY(0);  /* Start position */
+    }
+    100% {
+        transform: translateY(calc(100vh + 100px));  /* Moves past bottom of screen */
+    }
+}
+
+/* Turn Off Animation - Simulates CRT monitor turning off with scan collapse */
+@keyframes turn-off {
+    0% {
+        transform: scale(1, 1);
+        filter: brightness(1);
+        opacity: 1;
+    }
+    10% {
+        transform: scale(1, 0.8);
+        filter: brightness(0.1);
+        opacity: 1;
+    }
+    30% {
+        transform: scale(0.6, 0.1) translate3d(0, 0, 0);
+        -webkit-filter: brightness(0.1);
+        filter: brightness(0.1);
+        opacity: 1;
+    }
+    40% {
+        transform: scale(0.8, 0.1) translate3d(0, 0, 0);
+        -webkit-filter: brightness(0.1);
+        filter: brightness(0.1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1, 0.1) translate3d(0, 0, 0);
+        -webkit-filter: brightness(0.1);
+        filter: brightness(0.1);
+        opacity: 1;
+    }
+    60% {
+        transform: scale(1, 0.2) translate3d(0, 0, 0);
+        -webkit-filter: brightness(0.2);
+        filter: brightness(0.2);
+        opacity: 1;
+    }
+    70% {
+        transform: scale(1, 0.4) translate3d(0, 0, 0);
+        -webkit-filter: brightness(0.4);
+        filter: brightness(0.4);
+        opacity: 1;
+    }
+    80% {
+        transform: scale(1, 0.6) translate3d(0, 0, 0);
+        -webkit-filter: brightness(0.6);
+        filter: brightness(0.6);
+        opacity: 1;
+    }
+    90% {
+        transform: scale(1, 0.8) translate3d(0, 0, 0);
+        -webkit-filter: brightness(0.8);
+        filter: brightness(0.8);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1, 1) translate3d(0, 0, 0);
+        -webkit-filter: brightness(1);
+        filter: brightness(1);
+        opacity: 1;
+    }
+}
+
+/* CRT effect */
+.crt-monitor::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    border-radius: 20px;
+}
+
+
+/* === MODAL STYLING === */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; /* Enable scroll if modal content is too long */
+    background-color: rgba(0, 20, 0, 0.85); /* Dark, slightly transparent green overlay */
+}
+
+.modal-content {
+    font-family: 'VT323', monospace; /* Ensure retro font */
+    background-color: rgba(10, 30, 20, 0.98); /* Dark green, almost opaque background */
+    color: var(--primary-color); /* Green text */
+    margin: 5% auto; /* Reduced top margin for mobile */
+    padding: 30px 20px; /* Reduced horizontal padding for mobile */
+    border: 1px solid var(--primary-color); /* Green border */
+    width: 90%; /* Wider on mobile */
+    max-width: 700px;
+    border-radius: 0px; /* Sharp corners for retro feel */
+    position: relative;
+    box-shadow: 0 0 20px var(--primary-color), inset 0 0 15px rgba(0,255,159,0.15); /* Green glow */
+    animation: modalAppear 0.3s ease-out; /* Subtle appear animation */
+    max-height: 85vh; /* Slightly taller on mobile */
+    overflow-y: auto; /* Allow scrolling */
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Modal Scrollbar (if content overflows) */
+.modal-content {
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: var(--primary-color) rgba(10, 30, 20, 0.95); /* scroll thumb and track */
+}
+
+.modal-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: rgba(10, 25, 15, 0.95); /* Background of the scrollbar track */
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color); /* Color of the scrollbar thumb */
+    border-radius: 0px; /* Sharp edges for thumb */
+    border: 1px solid var(--primary-color); 
+}
+
+.close-button {
+    color: var(--primary-color);
+    font-size: 28px; /* Slightly smaller on mobile */
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    transition: color 0.2s, text-shadow 0.2s;
+    line-height: 1;
+    cursor: pointer;
+    border-bottom: none;
+    animation: none;
+    padding: 5px 10px; /* Larger touch target */
+    z-index: 1; /* Ensure it's above other content */
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--primary-color);
+    text-shadow: 0 0 8px var(--primary-color);
+    text-decoration: none;
+}
+
+/* Modal links specific styles */
+.modal-content a,
+.modal-content a:visited {
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--primary-color);
+    animation: flicker-underline 4s infinite;
+    text-decoration: none;
+    font-style: italic;
+}
+
+.modal-content a:hover {
+    color: var(--primary-color);
+    text-shadow: 0 0 5px var(--primary-color);
+    border-bottom-color: var(--primary-color);
+    animation: flicker-underline 1s infinite;
+}
+
+.modal-content h2 {
+    color: var(--primary-color);
+    text-shadow: var(--text-glow);
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0,255,159,0.5);
+    padding-bottom: 15px;
+    font-size: 1.6em; /* Slightly smaller on mobile */
+    padding-right: 30px; /* Space for close button */
+}
+
+.modal-content p {
+    margin-bottom: 18px;
+    line-height: 1.7; /* Improved readability */
+    font-size: 1.1em; /* Base size for modal text */
+}
+
+.modal-content p strong {
+    color: var(--primary-color); /* Ensure strong text is clearly visible */
+}
+
+/* Mobile-specific adjustments */
+@media screen and (max-width: 480px) {
+    .modal-content {
+        margin: 2% auto;
+        padding: 20px 15px;
+        width: 95%;
+        max-height: 90vh;
+    }
+
+    .modal-content h2 {
+        font-size: 1.4em;
+        margin-bottom: 15px;
+    }
+
+    .modal-content h3 {
+        font-size: 1.2em;
+        margin-top: 15px;
+        margin-bottom: 8px;
+    }
+
+    .modal-content p {
+        font-size: 1em;
+        margin-bottom: 12px;
+        line-height: 1.5;
+    }
+
+    .close-button {
+        font-size: 24px;
+        top: 5px;
+        right: 10px;
+    }
+
+    .legal-details {
+        margin-top: 10px;
+    }
+}
+
+/* Form Styles */
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    font-family: 'VT323', monospace;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 5px rgba(0, 255, 159, 0.2);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color), inset 0 0 5px rgba(0, 255, 159, 0.4);
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.contact-form .submit-button {
+    background: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 10px 30px;
+    font-family: 'VT323', monospace;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: flicker-underline 4s infinite;
+}
+
+.contact-form .submit-button:hover {
+    background: rgba(0, 255, 159, 0.1);
+    box-shadow: 0 0 15px var(--primary-color);
+    animation: flicker-underline 1s infinite;
+}
+
+.modal-content hr {
+    border: 0;
+    height: 1px;
+    background: var(--primary-color);
+    opacity: 0.3; /* Subtler separator */
+    margin: 25px 0;
+}
+
+
+/* Responsive Design - Tablet and Mobile Styles */
+@media (max-width: 768px) {
+    /* Full screen monitor on mobile */
+    .crt-monitor {
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+        margin: 0;
+        top: 0; /* Align to top */
+        left: 0; /* Align to left */
+        transform: none; /* Remove translate and scale */
+        animation: none; /* Disable monitor appear animation for direct display */
+        opacity: 1; /* Ensure it's visible */
+        padding: 10px; /* Adjust padding for mobile */
+    }
+
+    .monitor-content {
+        padding: 10px;
+        height: 100%; /* Fill the crt-monitor */
+        animation: none; /* Disable content fade in */
+        opacity: 1;
+    }
+    
+    .header-area {
+        margin-bottom: 10px;
+    }
+
+    .text-logo {
+        max-width: 90%;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .symbol-logo {
+        height: 60px;
+        margin: 5px 0;
+    }
+
+    .symbol {
+        width: 60px;
+        height: 60px;
+    }
+
+    .nav-menu {
+        padding: 5px 0;
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        gap: 5px;
+    }
+
+    .nav-menu li {
+        margin: 3px 0;
+    }
+
+    .nav-menu a {
+        font-size: 1.2em; /* Might need to be smaller if too crowded */
+        padding: 5px 10px; /* Adjust padding */
+    }
+
+    .screen-wrapper {
+        margin: 10px 0;
+        padding: 10px; /* Reduced padding */
+        min-height: 150px; /* Adjust min-height */
+    }
+
+    .manifesto-text {
+        font-size: 1em;
+        line-height: 1.5;
+    }
+
+    h1 {
+        font-size: 1.8em;
+        margin: 10px 0;
+    }
+    .hero-content h1 { /* Hero specific h1 for mobile */
+        font-size: 1.6em;
+    }
+
+    .cta-buttons {
+        /* flex-direction: column; /* Already set by default if needed */
+        gap: 10px;
+        padding: 15px 0;
+    }
+
+    .cta-buttons a { /* Ensure buttons are manageable */
+        margin: 5px 0; /* Add vertical margin */
+        padding: 10px 15px; /* Adjust padding */
+        width: auto; /* Allow natural width or set a max-width */
+        display: inline-block;
+        /* width: 100%; text-align: center; /* if you want full-width buttons */
+    }
+
+    .section {
+        padding: 10px;
+    }
+
+    /* Modal responsive */
+    .modal-content {
+        width: 90%;
+        margin: 5% auto;
+        padding: 20px;
+        max-height: 90vh; /* Ensure it doesn't take full screen height */
+    }
+    .modal-content h2 {
+        font-size: 1.5em;
+    }
+    .modal-content p {
+        font-size: 1em;
+    }
+}
+
+/* Small Mobile Devices - Extra adjustments for very small screens */
+@media (max-width: 480px) {
+    .crt-monitor {
+        padding: 5px;
+    }
+    .monitor-content {
+        padding: 5px;
+    }
+
+    .text-logo {
+        max-width: 95%;
+    }
+
+    .symbol-logo {
+        height: 50px;
+    }
+
+    .symbol {
+        width: 50px;
+        height: 50px;
+    }
+
+    .nav-menu a {
+        font-size: 1.1em; /* Further reduce font size */
+    }
+
+    .screen-wrapper {
+        padding: 5px;
+    }
+
+    h1 {
+        font-size: 1.6em;
+    }
+     .hero-content h1 { /* Hero specific h1 for small mobile */
+        font-size: 1.4em;
+    }
+
+    .manifesto-text {
+        font-size: 0.9em; /* Slightly smaller for readability */
+    }
+
+    .modal-content {
+        padding: 15px;
+    }
+    .modal-content h2 {
+        font-size: 1.3em;
+    }
+    .modal-content p {
+        font-size: 0.95em;
+    }
+     .close-button {
+        font-size: 28px;
+        top: 5px;
+        right: 10px;
+    }
+}
+
+/* These were at the end, ensure they don't conflict or are needed */
+/* .header-logo {
+    padding: 10px 0; /* Already defined earlier */
+/* } */
+
+/* .symbol-logo {
+    padding: 5px 0; /* Already defined earlier */
+/* } */

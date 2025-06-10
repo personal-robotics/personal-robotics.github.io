@@ -1,458 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Basic meta tags and title -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Robotics - a loving robot in every home</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Personal Robotics</title>
+
+    <!-- Stylesheets: main CSS, fonts, and icons -->
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <!-- Using locally hosted fonts -->
+    <link rel="stylesheet" href="css/fontawesome/css/all.min.css">
+    
+    <!-- JavaScript for animations and interactions -->
 </head>
 <body>
-    
-    <!-- ==================================NAVIGATION================================================= -->
-    <!-- Side Navigation Menu -->
-    
+    <!-- Background container for the dark theme -->
+    <div class="background"></div>
 
-    <!-- <div class="side-nav"> 
-        <ul>
-            <li><a href="index.html">go to 0.0</a></li>
-            <li><a href="about_us.html">About</a></li>
-            <li><a href="robots.html">Robots</a></li>  
-            <li><a href="team.html">In vivo</a></li>
-            <li><a href="contact.html">contact</a></li> 
-            <li><a href="support.html">$$$$$$</a></li>  
-            <li><a href="legal.html">legal</a></li>  
-        </ul>
-    </div>
--->
-    
-<!-- ==================================Start of page================================================= -->
+    <!-- Main CRT monitor container -->
+    <main class="crt-monitor">
+        <!-- Monitor content wrapper with border and padding -->
+        <div class="monitor-content">
+            <!-- Scanline effect for CRT animation -->
+            <div class="scanline"></div>
 
-    <section id="top">
-    <!-- Full-Screen Image Section -->
-    <section class="full-screen" style="background-image: url('images/backdrop.jpg');">
-        <div class="content">
-            <img src="images/personal_robotics.png" alt="Personal Robotics" class="personal_robotics">  
-            <br><br><br><br><br><br><br><br><br><br><br>    
-            <img src="images/logo.png" alt="Logo" class="logo">            
-            <br><br>
-            <H1>A loving robot in every home</H1>
-        </div>
-    </section>
-
-<!-- ==================================ABOUT US================================================= -->
-
-<!-- Full-Screen Image Section 
-    <section id="about">
-        <section class="full-screen" style="background-image: url('images/glow01.jpg');">
-            <div class="content">
-                <center>
-                <table class="table-blue">
-                <thead>
-                    <tr>
-                        <th> $>_
-                        </th>
-                        <th>
-                            <br>
-                            <center>
-                                Welcome to Personal Robotics!                               
-                            </center>
-                            <br>
-                        </th>   
-                    </tr> 
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                        </td>
-                        <td> 
-                            <br>
-                            In a world where the line between human and machine blurs, Personal Robotics stands as a beacon of innovation.
-                            <br>
-                            We are the architects of a new era, crafting gateways to a world where artificial 
-                            intelligence and robotics are as integral to our existence as the air we breathe.
-                            <br>
-                            We bring you technology that transcends the ordinary. 
-                            <br>
-                            <center>
-                                <img src="images/logo.png" alt="Logo" class="logo">
-                                <br>
-                                <H1>A loving robot in every home</H1>
-                            </center>
-                            <br>
-                            Our creations are the embodiment of a dream — a dream where machines are an intimate companion in our daily lives. 
-                            <br>
-                            Our journey began with a simple, yet profound belief: that the zenith of technology should be accessible to everyone. 
-                            We transform the intricate dance of algorithms and robotics into companions that fit seamlessly into your life.
-                            <br>
-                            At Personal Robotics, we break down the barriers between humans and machines. 
-                            <br>
-                            Therefore our products are intuitive, ready to operate straight out of the box, becoming a part of your home, your work, 
-                            <br>
-                            your creative space. 
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </center>
-        </div>
-    </section>
--->
-     
-    
-    <!-- ============================ROBOTS======================================================= 
-        <section id="robots">
-            <section class="split-screen">
-                <div class="split left" style="background-image: url('images/glow01.jpg');">
-                    <div class="content">
-                        <h2>lIllI</h2>
-                        <p>Our Humanoid</p>
-                    </div>
+            <!-- Fixed header area -->
+            <div class="header-area">
+                <!-- Header section with main text logo -->
+                <div class="header-logo">
+                    <img src="images/optimized/personal_robotics.png" alt="Personal Robotics" class="text-logo">
                 </div>
-                <div class="split right" style="background-image: url('images/glow02.jpg');"">
-                    <div class="content">
-                        <h2>Rubrick</h2>
-                        <p>Our smallest robot</p>
-                    </div>
+
+                <!-- Navigation menu - Edit links here to add/remove sections -->
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#vision">Vision</a></li>
+                        <li><a href="#robots">Robots</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#legal">Legal</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Symbol logo below navigation -->
+                <div class="symbol-logo">
+                    <img src="images/optimized/logo.png" alt="Personal Robotics Symbol" class="symbol">
                 </div>
-            </section>
-        -->
-        <!-- ================================TEAM=================================================== 
-            
-            <section id="team">
-            <section class="full-screen" style="background-image: url('images/glow04.jpg');">
-                <div class="content">
-                    <center>
-                        <table class="table-red"> 
-                            <thead>
-                                <tr>
-                                    <th>
-                                        Per Salkowitsch
-                                    </th> 
-                                    <th>
-                                        <center>
-                                                Team Leader, AI systems, System development
-                                        </center>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td width="10%"">
-                                        <img src="images/ing robot iare embodiments of dreams, each a testament to his vision of a world seamlessly integrated with AI.
-                                            Per's role at Personal Robotics transcends conventional titles.
-                                            He's a sculptor of the intangible, shaping the future with each project he helms. 
-                                            From the intricacies of robot design to the grand tapestry of project planning, his touch brings a harmony of form and function. 
-                                            His genius lies in his ability to see beyond the nuts and bolts, envisioning robots as partners, as extensions of our own selves.
-                                            His work is a blend of madness and method, a dance on the razor's edge of innovation.
-                                            Every project under his guidance is a step into the unknown, a venture into the realms of what could be. 
-                                            With an unyielding commitment to pushing the boundaries, Per leads his team in crafting new realities.
-                                            In Per, we see the spirit of Personal Robotics personified: bold, visionary, unafraid to redefine the possible. 
-                                            He's creating a legacy, a new chapter in the story of humanity's journey with technology. 
-                                        </p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                    </td>
-                                    <td>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table> 
-                        <br>
-                        <table class="table-red">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        "The Architect"
-                                    </th> 
-                                    <th>
-                                        <center>
-                                            Software Orchestration, Visual Computing, Low level programming
-                                        </center> 
-                                    </th>  
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td width="10%"">
-                                        <img src="images/stefan.jpg" alt="the Architect" class="face">
-                                    </td>
-                                    <td>
-                                        <p>
-                                        The Architect is a programmer, a weaver of digital dreams, a conjurer of code. 
-                                        In his realm, the binary is an intricate language of possibility, each line of code a verse in the epic poem of creation. 
-                                        His keyboard is his wand, the screen his crystal ball, through which he peers into the depths of the digital unknown.
-                                        The Architect dwells in a world where software is an extension of consciousness. 
-                                        His craft is one of precision and artistry, each algorithm a meticulously crafted spell, each program a labyrinth of logic and imagination.
-                                        The Architect's role transcends mere software development. <br>
-                                        He is the visionary behind the digital veil, the one who orchestrates the symphony of artificial intelligence that breathes life into our robots. 
-                                        His code is the soul of our machines, imbued with the essence of intelligence and intuition.
-                                        His workspace is a sanctum of screens and servers, a haven where the binary beats of electronic life pulse with energy. 
-                                        Here, The Architect delves into the mysteries of AI, forging software that is sentient, capable of learning, adapting, evolving.
-                                        In his hands, the abstract becomes tangible, the virtual becomes real. 
-                                        He is sculpting the future, one line of code at a time.<br>
-                                        The Architect is the unseen force behind our robotic companions, a silent guardian of the binary realm. 
-                                        His vision is what propels Personal Robotics into the future, a future where our machines understand emotions, intentions, dreams.
-                                    </p>
-                                    </h1>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                    </td>
-                                    <td>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table> 
-
-                    <br>
-                    <table class="responsive-table">
-                                <table class="table-red">
-                                    <thead>
-                                        <tr>
-                                            <td width="10%"">
-                                                <center>
-                                                    Aditya Kapilavai
-                                                </center>
-                                            </th> 
-                                            <th>
-                                                <center>
-                                                    Kinematics, Trajectory Calculations, Spatial Computation
-                                                </center>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td width="10%"">
-                                                <img src="images/adit.jpg" alt="Aditya Kapilavai" class="face">
-                                            </td>
-                                            <td>
-                                                <p> 
-                                                    His mind operates in a dimension where the abstract becomes tangible, where the complex geometries of motion planning and kinematics are as clear and vivid as the daylit world. <br>
-                                                Aditya sees the world through the lens of mathematical purity. 
-                                                For him, every movement of our robotic creations is a problem to be solved, a theorem to be proved. 
-                                                His algorithms don't just instruct; they breathe life into the mechanical limbs, guiding them with an unseen, yet unerring hand.
-                                                He constructs the invisible frameworks upon which our robots move and interact with the world. 
-                                                His work in motion planning is an art form, a delicate balancing act between the possible and the practical, where every calculation is a step towards perfection.
-                                                Aditya's domain is a sanctuary of numbers and simulations, a place where kinematic models take shape, not just on screens, but in the very air he breathes. 
-                                                His expertise in this field about about envisioning a fluid, natural interaction between our creations and their environment.
-                                                His approach to mathematics is one of elegance and simplicity. 
-                                                <br>
-                                                In the complex world of robotics, his solutions stand out for their clarity and efficiency. 
-                                                Aditya's genius lies in making the intricate simple, the complicated understandable, transforming the esoteric language of mathematics into the graceful poetry of motion.                                           
-                                            </p>
-                                        </td>
-                                    </tr>
-                                        <tr>
-                                            <td>
-                                            </td>
-                                            <td>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table> 
-                                <br>
-                                <table class="table-red">
-                                    <thead>
-                                        <tr>
-                                            <td width="10%"">
-                                                Jevgeni Ert
-                                            </th> 
-                                            <th>
-                                                <center>
-                                                    Mathematical modeling, Robot Simulation, Swarm Deployment
-                                                </center>
-                                            </th>  
-                                        </tr>                                        
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <img src="images/jeff.jpg" alt="Jevgeni Ignasov" class="face">
-                                            </td>
-                                            <td>< <p>
-                                                Jeff is a sculptor of motion and a wizard of mechanics. 
-                                                His domain is the delicate nexus where physical form meets electronic function, a realm where every gear, every circuit, tells a story of innovation and precision. 
-                                                He's the architect behind the architecture, the one who translates complex theories into tangible reality. 
-                                                His expertise in robotics simulation is about creating a symphony of movement, an intricate ballet where every component, every servo, is in perfect harmony.
-                                                In his lab, amidst a forest of components and screens, Jeff is the conductor of a silent orchestra. 
-                                                Here, he weaves the fabric of mechanical possibility, testing the limits of what can be achieved. 
-                                                His simulations are trials, rehearsals for the flawless performance of our robots in the real world.
-                                                Jeff's expertise in robotics architecture is the foundation upon which Personal Robotics builds its dreams. 
-                                                He molds the bones of our creations, instilling in them the strength and agility needed to navigate a world built for flesh and blood.
-                                                He is not just building robots; he is redefining the relationship between man and machine, creating entities that move, not just with precision, but with grace.
-                                                In Jeff, we see the spirit of innovation that drives Personal Robotics forward.     
-                                            </p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                            </td>
-                                            <td>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table> 
-                    </table>
-
-    </center>
-</div>
-</section>
--->
-
-<!-- =======================SUPPORT============================================================ 
-    
-        <section id="support">
-            <section class="full-screen" style="background-image: url('images/glow02.jpg');">
-                <div class="support">
-                    <table class="table-blue">
-                        <thead>
-                            <tr>
-                                <th>
-                                </th>
-                                <th>
-                                    <center>
-                                        Support our work!
-                                    </center>
-                                </th>
-                                <th>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    Shop
-                                </td>
-                                <td> 
-                                    <center>
-                                        Patreon http://patreon.com/personalrobotics
-                                    </center>
-                                </td>
-                                <td>
-                                    <right>
-                                        Co-fi
-                                    </right>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                </td>
-                                <td>
-                                    <center>
-                                        Crypto  
-                                    </center>
-                                    
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <center>
-                        <img src="images/logo.png" alt="Logo" class="logo">                      
-                    </center>
-                </div>
-            </section>
-        -->
-            
- <!-- =================================CONTACT================================================== 
-    
-    <section id="contact">
-        <section class="full-screen" style="background-image: url('images/glow04.jpg');">
-            <div class="content">
-                
-                <table class="table-green">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>    
-                                <center>
-                                    CONTACT INFORMATION
-                                    <br>                  
-                                </center>
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                            </td>
-                            <td> <br>download</td>
-                            <td>
-                                <br>
-                                <br>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><br>github<br><br>
-                            </td>
-                            <td></td>
-                            <td>Instructables</td>
-                        </tr>
-                           </tbody>
-                </table>
             </div>
-        </section>
-    -->
-        
-    <!-- =============================LEGAL====================================================== 
-        
-        <section id="legal">
-             <section class="full-screen" style="background-image: url('images/glow05.jpg');">
-                <div class="content">
-                    <table class="table-yellow">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>imprint</td>
-                                <td><br>Copyright<br></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    Copyright © 2025 Personal Robotics
-                </div>
-            </section>
-            
-        -->
-            
-            
-            <!-- ==================================END OF CONTENT================================================= -->
-            
-            <!-- JavaScript for Smooth Scrolling -->
-            <script>
-                document.querySelectorAll('.side-nav a').forEach(anchor => {
-                    anchor.addEventListener('click', function (e) {
-                        // Check if the href attribute points to an ID on the same page
-                        if (this.getAttribute('href').startsWith('#')) {
-                            e.preventDefault(); // Prevent default only for internal links
-                            const target = document.querySelector(this.getAttribute('href'));
-                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }
-                        // External links will work normally
-                    });
-                });
-            </script>
-            
+
+            <!-- Scrollable content area -->
+            <div class="screen-wrapper">
+                <!-- Sections will be loaded dynamically -->
+                <section id="hero" class="section hero-section" data-content="content/hero.html"></section>
+                <section id="vision" class="section vision-section" data-content="content/vision.html"></section>
+                <section id="robots" class="section robots-section" data-content="content/robots.html"></section>
+                <section id="contact" class="section contact-section" data-content="content/contact.html"></section>
+                <section id="legal" class="section legal-section" data-content="content/legal.html"></section>
+            </div>
+        </div>
+    </main>
+
+    <!-- MODALS (placed outside .crt-monitor for proper fixed positioning) -->
+
+    <!-- Modal for Privacy Policy -->
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" data-modal-id="privacyModal">×</span>
+            <h2>Privacy Policy</h2>
+            <p><strong>No Cookies or Tracking:</strong> We value your privacy and data security. Our website does not use cookies or any form of user tracking.</p>
+            <p>If you have any recommendations or questions, please contact us at <a href="mailto:blip@personalrobotics.eu">blip@personalrobotics.eu</a>.</p>
+            <p>Our Official Facebook page is: <a href="https://www.facebook.com/PersonalRoboticsEU target="_blank" rel="noopener noreferrer">https://www.facebook.com/PersonalRobotics/</a>.</p>
+            <p>We do not use Instagram, Twitter/X or any other social media platforms except for those mentioned above.</p>
+            <hr>
+            <p>At Personal Robotics, we value your privacy. This policy outlines our practices concerning data collection and usage. We do not use cookies or tracking technologies, and therefore, we do not collect any personal data through our website.</p>
+            <p>You have various rights under the General Data Protection Regulation, including access, rectification, and erasure of your personal data. For any data protection inquiries, contact us at <a href="mailto:legal@personalrobotics.eu">legal@personalrobotics.eu</a>.</p>
+            <p><strong>Disclaimer:</strong> We are not responsible for the content or privacy practices of external sites linked to our website.</p>
+            <p>Changes to our legal policies will be posted on this page.</p>
+        </div>
+    </div>
+
+    <!-- Modal for Terms of Service -->
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" data-modal-id="termsModal">×</span>
+            <h2>Terms of Service</h2>
+            <p>By using our website, you agree to these terms.</p>
+            <p>This site is for your personal and non-commercial use.</p>
+            <p>Any misuse or unauthorized use is strictly prohibited.</p>
+            <p>This website is governed by the laws of Austria, and any disputes will be resolved in Austrian courts.</p>
+        </div>
+    </div>
+
+    <!-- Modal for Contact -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" data-modal-id="contactModal">×</span>
+            <h2>Contact Information</h2>
+            <p>For any questions or concerns about our legal policies, or general inquiries, please contact us at <a href="mailto:legal@personalrobotics.eu">legal@personalrobotics.eu</a>.</p>
+            <p><strong>Business Contact Details:</strong></p>
+            <p>Phone: +43 660 1234567<br>
+            Email: <a href="mailto:legal@personalrobotics.eu">legal@personalrobotics.eu</a></p>
+        </div>
+    </div>
+
+    <!-- Modal for Imprint -->
+    <div id="imprintModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" data-modal-id="imprintModal">×</span>
+            <h2>Legal Information</h2>
+            <div class="legal-details">
+                <h3>Business Owner</h3>
+                <p>Per Robert Salkowitsch<br>
+                (sole proprietorship)</p>
+                
+                <h3>Business Address</h3>
+                <p>Taborstrasse 51/3<br>
+                    1020 Vienna<br>
+                    Austria</p>
+                    
+                <h3>Contact Information</h3>
+                <p>Phone: +43 660 1234567<br>
+                    Email: <a href="mailto:legal@personalrobotics.eu">legal@personalrobotics.eu</a></p>
+                    
+                <h3>Supervisory Authority</h3>
+                <p>Municipal District Office for the 1st District, Vienna</p>
+                
+                <h3>Member of</h3>
+                <p>Vienna Chamber of Commerce, Section for Commerce</p>
+                
+                <h3>Professional Title</h3>
+                <p>Sales<br>
+                    Granted in: Austria</p>
+                    
+                <h3>Disclaimer</h3>
+                <p>Despite careful content control, we assume no liability for the content of external links. The operators of linked pages are solely responsible for their content.</p>
+                
+                <h3>Online Dispute Resolution</h3>
+                <p>The European Commission provides a platform for online dispute resolution (ODR):<br>
+                    <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr</a></p>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

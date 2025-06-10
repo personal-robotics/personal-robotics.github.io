@@ -1,0 +1,185 @@
+<div class="legal-content">
+    <h2>Legal Information</h2>
+    <div class="legal-details" style="margin-top: 20px;">
+        <h3>Business Owner</h3>
+        <p>Per Robert Salkowitsch<br>
+        (sole proprietorship)</p>
+        
+        <h3>Business Address</h3>
+        <p>Taborstrasse 51/3<br>
+            1020 Vienna<br>
+            Austria</p>
+            
+            <h3>Contact Information</h3>
+            <p>Phone: +43 660 1234567<br>
+                Email: <a href="mailto:legal@personalrobotics.eu">legal@personalrobotics.eu</a></p>
+                
+                <h3>Supervisory Authority</h3>
+                <p>Municipal District Office for the 1st District, Vienna</p>
+                
+                <h3>Member of</h3>
+                <p>Vienna Chamber of Commerce, Section for Commerce</p>
+                
+                <h3>Professional Title</h3>
+                <p>Sales<br>
+                    Granted in: Austria</p>
+                    
+                    <h3>Disclaimer</h3>
+                    <p>Despite careful content control, we assume no liability for the content of external links. The operators of linked pages are solely responsible for their content.</p>
+                    
+                    <h3>Online Dispute Resolution</h3>
+                    <p>The European Commission provides a platform for online dispute resolution (ODR):<br>
+                        <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr</a></p>
+                    </div>
+                </div>
+                <p>© 2025 Personal Robotics. All rights reserved.</p>
+                <div class="legal-links">
+                    <a href="#" id="openPrivacyModalLink">Privacy Policy</a>
+                    <a href="#" id="openTermsModalLink">Terms of Service</a>
+                    <a href="#" id="openContactModalLink">Contact</a>
+                </div>
+
+<!-- Modal for Privacy Policy -->
+<div id="privacyModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" data-modal-id="privacyModal">&times;</span>
+        <h2>Privacy Policy</h2>
+        <p><strong>No Cookies or Tracking:</strong> We value your privacy and data security. Our website does not use cookies or any form of user tracking.</p>
+        <p>If you have any recommendations or questions, please contact us at <a href="mailto:blip@personalrobotics.eu">blip@personalrobotics.eu</a>.</p>
+        <p>Our Official Facebook page is: <a href="https://www.facebook.com/PersonalRobotics/" target="_blank" rel="noopener noreferrer">https://www.facebook.com/PersonalRobotics/</a>.</p>
+        <p>We do not use Instagram, Twitter/X or any other social media platforms except for those mentioned above.</p>
+        <hr>
+        <p>At Personal Robotics, we value your privacy. This policy outlines our practices concerning data collection and usage. We do not use cookies or tracking technologies, and therefore, we do not collect any personal data through our website.</p>
+        <p>You have various rights under the General Data Protection Regulation, including access, rectification, and erasure of your personal data. For any data protection inquiries, contact us at <a href="mailto:legal@personalrobotics.eu">legal@personalrobotics.eu</a>.</p>
+        <p><strong>Disclaimer:</strong> We are not responsible for the content or privacy practices of external sites linked to our website.</p>
+        <p>Changes to our legal policies will be posted on this page.</p>
+    </div>
+</div>
+
+<!-- Modal for Terms of Service -->
+<div id="termsModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" data-modal-id="termsModal">&times;</span>
+        <h2>Terms of Service</h2>
+        <p>By using our website, you agree to these terms.</p>
+        <p>This site is for your personal and non-commercial use.</p>
+        <p>Any misuse or unauthorized use is strictly prohibited.</p>
+        <p>This website is governed by the laws of Austria, and any disputes will be resolved in Austrian courts.</p>
+    </div>
+</div>
+
+<!-- Modal for Contact -->
+<div id="contactModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" data-modal-id="contactModal">&times;</span>
+        <h2>Contact Information</h2>
+        <p>For any questions or concerns about our legal policies, or general inquiries, please contact us at <a href="mailto:legal@personalrobotics.eu">legal@personalrobotics.eu</a>.</p>
+        <p><strong>Business Contact Details:</strong></p>
+        <p>Phone: +43 660 1234567<br>
+        Email: <a href="mailto:legal@personalrobotics.eu">legal@personalrobotics.eu</a></p>
+    </div>
+</div>
+
+<style>
+    .modal {
+        display: none; 
+        position: fixed; 
+        z-index: 1000; 
+        left: 0;
+        top: 0;
+        width: 100%; 
+        height: 100%; 
+        overflow: auto; 
+        background-color: rgba(0,0,0,0.6);
+    }
+    .modal-content {
+        background-color: #fefefe;
+        margin: 10% auto; 
+        padding: 25px;
+        border: 1px solid #888;
+        width: 70%; 
+        max-width: 700px;
+        border-radius: 8px;
+        position: relative;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+    .close-button {
+        color: #aaa;
+        font-size: 28px;
+        font-weight: bold;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+    }
+    .close-button:hover,
+    .close-button:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .legal-links a {
+        cursor: pointer;
+    }
+</style>
+
+<script>
+    (function() {
+        console.log('Modal script starting...');
+
+        const modalLinksData = [
+            { linkId: 'openPrivacyModalLink', modalId: 'privacyModal' },
+            { linkId: 'openTermsModalLink', modalId: 'termsModal' },
+            { linkId: 'openContactModalLink', modalId: 'contactModal' }
+        ];
+
+        const activeModals = {}; // To store modal DOM elements for various operations
+
+        modalLinksData.forEach(item => {
+            const linkElement = document.getElementById(item.linkId);
+            const modalElement = document.getElementById(item.modalId);
+
+            console.log('Looking for link:', item.linkId, linkElement ? 'Found' : 'NOT FOUND');
+            console.log('Looking for modal:', item.modalId, modalElement ? 'Found' : 'NOT FOUND');
+            
+            if (modalElement) {
+                activeModals[item.modalId] = modalElement; // Store for window click and close button logic
+            }
+
+            if (linkElement && modalElement) {
+                linkElement.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    console.log('Opening modal:', item.modalId);
+                    modalElement.style.display = 'block';
+                });
+            } else {
+                console.error('Setup failed for modal trigger:', item.linkId, 'or modal content:', item.modalId);
+            }
+        });
+
+        const closeButtons = document.querySelectorAll('.close-button');
+        console.log('Found', closeButtons.length, 'close buttons.');
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const modalIdToClose = this.getAttribute('data-modal-id');
+                if (modalIdToClose && activeModals[modalIdToClose]) {
+                    console.log('Closing modal via button:', modalIdToClose);
+                    activeModals[modalIdToClose].style.display = 'none';
+                } else {
+                    console.error('Could not close modal. ID or modal element not found for:', modalIdToClose);
+                }
+            });
+        });
+
+        window.addEventListener('click', function(event) {
+            for (const id in activeModals) {
+                if (activeModals.hasOwnProperty(id) && event.target == activeModals[id]) {
+                    console.log('Closing modal via window click:', id);
+                    activeModals[id].style.display = 'none';
+                }
+            }
+        });
+
+        console.log('Modal script finished setup.');
+    })();
+</script>
+

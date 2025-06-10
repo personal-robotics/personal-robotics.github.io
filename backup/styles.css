@@ -1,0 +1,682 @@
+/* Theme Variables - Modify these to change the color scheme */
+:root {
+    --primary-color: #00ff9f;  /* Accent color for highlights and effects */
+    --secondary-color: #00b8ff;  /* Secondary accent color */
+    --bg-color: rgba(16, 16, 24, 0.9);  /* Main background color with transparency */
+    --text-glow: 0 0 10px var(--primary-color);  /* Text glow effect */
+}
+
+/* Base Styles - Resets and sets up the basic styling for the document */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;  /* Ensures consistent box model across browsers */
+}
+
+/* Base body styles - Sets up the retro terminal look */
+body {
+    font-family: 'VT323', monospace;  /* Retro terminal font */
+    color: var(--primary-color);  /* Main text color */
+    min-height: 100vh;  /* Ensures the body takes up the full viewport height */
+    overflow: hidden;  /* Hides any content that overflows the body */
+    background: black; /* Start with black background */
+}
+
+/* Background Styles - Sets up the fixed background image */
+.background {
+    position: fixed;  /* Keeps the background fixed in place */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('Backgrounds/background01.jpg') no-repeat center center fixed;
+    background-size: cover;
+    z-index: -1;
+    opacity: 0;
+    animation: fadeIn 1s ease-in forwards;
+    animation-delay: 0.5s; /* Start after initial black screen */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* CRT Monitor Container - Main wrapper for the entire interface */
+.crt-monitor {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 98%;                /* Almost full width */
+    max-width: 1600px;        /* Maximum width to maintain readability */
+    height: 85vh;             /* Viewport-relative height */
+    background: var(--bg-color);
+    border-radius: 20px;      /* Rounded corners for CRT look */
+    padding: 20px;
+    box-shadow:               /* Multi-layered shadow for depth */
+        0 0 0 2px #333,      /* Inner border */
+        0 0 0 4px #666,      /* Outer border */
+        0 0 20px rgba(0, 255, 159, 0.3),    /* Outer glow */
+        inset 0 0 20px rgba(0, 255, 159, 0.1); /* Inner glow */
+    animation: monitorAppear 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation-delay: 1.5s; /* Start after background fade */
+}
+
+@keyframes monitorAppear {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        border-radius: 50%;
+        opacity: 0;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(0.2);
+        border-radius: 40%;
+        opacity: 0.5;
+    }
+    70% {
+        transform: translate(-50%, -50%) scale(0.8);
+        border-radius: 25px;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        border-radius: 20px;
+        opacity: 1;
+    }
+}
+
+.monitor-content {
+    position: relative;
+    height: 100%;
+    border: 2px solid var(--primary-color);
+    padding: 20px;
+    clip-path: inset(0 0 0 0);
+    opacity: 0;
+    animation: contentFadeIn 0.5s ease-out forwards;
+    animation-delay: 2.3s; /* Start after monitor appears */
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 255, 65, 0.02);
+}
+
+@keyframes contentFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Logo Styles - Both text and symbol logos */
+.header-logo {
+    text-align: center;
+    padding: 10px 0;
+    flex-shrink: 0;
+}
+
+.text-logo {
+    max-width: 600px;         /* Slightly smaller for better spacing */
+    height: auto;
+    filter: brightness(0) invert(1) sepia(100%) saturate(1000%) hue-rotate(70deg); /* Creates the green glow effect */
+}
+
+.symbol-logo {
+    text-align: center;
+    padding: 0;
+    flex-shrink: 0;
+    margin: 10px 0; /* Match menu spacing */
+    height: 100px; /* Match actual symbol display height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.symbol {
+    width: 100px;
+    height: 100px;
+    filter: brightness(0) invert(1) sepia(100%) saturate(1000%) hue-rotate(70deg); /* Matches text logo color */
+}
+
+/* Navigation Menu - Sticky menu with retro borders */
+.nav-menu {
+    position: sticky;         /* Stays at top during scroll */
+    top: 0;
+    padding: 8px 0;
+    margin: 10px 0;
+    z-index: 100;            /* Keeps menu above other content */
+    flex-shrink: 0;
+}
+
+.nav-menu ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Flickering animation for links */
+@keyframes flicker-underline {
+    0% { border-bottom-color: var(--primary-color); }
+    92% { border-bottom-color: var(--primary-color); }
+    94% { border-bottom-color: transparent; }
+    96% { border-bottom-color: var(--primary-color); }
+    98% { border-bottom-color: transparent; }
+    100% { border-bottom-color: var(--primary-color); }
+}
+
+/* Global link styles */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    border-bottom: 1px solid var(--primary-color);
+    font-style: italic;
+    animation: flicker-underline 4s infinite;
+}
+
+a:hover {
+    text-shadow: 0 0 5px var(--primary-color);
+    animation: flicker-underline 1s infinite;
+}
+
+/* Navigation specific styles */
+.nav-menu a {
+    font-style: normal;
+    font-size: 1.2em;
+    border-bottom: none;
+    animation: none;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    text-shadow: 0 0 10px var(--primary-color);
+    border-bottom: 1px solid var(--primary-color);
+    animation: flicker-underline 0.8s infinite;
+}
+
+/* Legal links specific styles */
+.legal-content .legal-links {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.legal-content .legal-links a,
+.legal-content .legal-links a:visited,
+.legal-content .legal-links a:link {
+    font-size: 1.1em;
+    color: var(--primary-color) !important;
+    border-bottom: 1px solid var(--primary-color);
+    animation: flicker-underline 3s infinite;
+    text-decoration: none;
+}
+
+.legal-content .legal-links a:hover {
+    animation: flicker-underline 0.8s infinite;
+    color: var(--primary-color) !important;
+    text-shadow: 0 0 5px var(--primary-color);
+}
+
+/* Fixed header area */
+.header-area {
+    flex-shrink: 0;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+
+/* Content container */
+.screen-wrapper {
+    flex: 1;
+    margin: 20px 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+    position: relative;
+}
+
+/* Scrollable section container */
+/* Hide scrollbar but allow scrolling */
+.section {
+    display: none;
+    height: 100%;
+    overflow-y: auto;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.section::-webkit-scrollbar {
+    display: none;
+}
+
+.section.active {
+    display: flex;
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+}
+
+.section.turn-off {
+    animation: turn-off 0.5s;
+}
+
+.section.turn-on {
+    animation: turn-on 0.5s;
+}
+
+h1 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    text-shadow: var(--text-glow);
+    text-align: center;
+}
+
+.hero-content {
+    height: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-content h1 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    text-shadow: var(--text-glow);
+    text-align: center;
+}
+
+.manifesto-text {
+    text-align: left;
+    font-size: 1.2em;
+    line-height: 1.4;
+    margin-bottom: auto;
+}
+
+.manifesto-text p {
+    margin: 0.5em 0;
+    opacity: 0.9;
+}
+
+.manifesto-text p:hover {
+    opacity: 1;
+    text-shadow: var(--text-glow);
+}
+
+.text-content {
+    margin: 20px 0;
+    font-size: 1.5em;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.blink {
+    animation: blink 1s infinite;
+    font-size: 1.2em;
+    margin: 20px 0;
+}
+
+.button {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 10px;
+    font-family: 'VT323', monospace;
+    font-size: 1.2em;
+    text-decoration: none;
+    border: 2px solid;
+    transition: all 0.3s ease;
+}
+
+.primary-button {
+    color: var(--bg-color);
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.primary-button:hover {
+    background: transparent;
+    color: var(--primary-color);
+}
+
+.secondary-button {
+    color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    background: transparent;
+}
+
+.secondary-button:hover {
+    background: var(--secondary-color);
+    color: var(--bg-color);
+}
+
+.cta-buttons {
+    margin: 30px 0;
+    text-align: center;
+}
+
+.signup-form {
+    width: 100%;
+    max-width: 500px;
+    margin: 20px 0;
+}
+
+.form-group {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+input[type="email"] {
+    flex: 1;
+    padding: 12px;
+    font-family: 'VT323', monospace;
+    font-size: 1.2em;
+    background: rgba(0, 255, 159, 0.1);
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+input[type="email"]::placeholder {
+    color: rgba(0, 255, 159, 0.5);
+}
+
+.social-links {
+    margin: 30px 0;
+}
+
+.social-links a {
+    color: var(--primary-color);
+    font-size: 2em;
+    margin: 0 15px;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--secondary-color);
+    text-shadow: var(--text-glow);
+}
+
+/* CRT Scanline Effect - Creates the rolling scanline animation */
+.scanline {
+    width: 100%;
+    height: 100px;            /* Height of the scanline */
+    z-index: 8;              /* Keeps it above content but below navigation */
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 255, 159, 0.2) 10%,  /* Stronger at the top */
+        rgba(0, 255, 159, 0.1) 50%,  /* Fades in middle */
+        transparent 90%              /* Fades to bottom */
+    );
+    opacity: 0.1;
+    position: absolute;
+    top: -100px;             /* Starts above the viewport */
+    animation: scanline 8s linear infinite;
+    pointer-events: none;     /* Prevents interference with clicks */
+}
+
+/* Robots Section */
+.robots-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.robots-content h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.robots-content h2 {
+    color: var(--neon-green);
+    margin: 40px 0 20px;
+}
+
+.legal-section {
+    min-height: auto;
+    padding: 20px;
+}
+
+.legal-section a {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+.legal-section a:hover {
+    text-shadow: 0 0 10px var(--secondary-color);
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Scanline Animation - Moves the scanline from top to bottom */
+@keyframes scanline {
+    0% {
+        transform: translateY(0);  /* Start position */
+    }
+    100% {
+        transform: translateY(calc(100vh + 100px));  /* Moves past bottom of screen */
+    }
+}
+
+/* Turn Off Animation - Simulates CRT monitor turning off with scan collapse */
+@keyframes turn-off {
+    0% {
+        transform: scale(1, 1);
+        filter: brightness(1);
+        opacity: 1;
+    }
+    10% {
+        transform: scale(1, 0.8);
+        filter: brightness(0.1);
+        opacity: 1;
+    }
+    30% {
+        transform: scale(0.6, 0.1) translate3d(0, 0, 0);
+        -webkit-filter: brightness(0.1);
+        filter: brightness(0.1);
+        opacity: 1;
+    }
+    40% {
+        transform: scale(0.8, 0.1) translate3d(0, 0, 0);
+        -webkit-filter: brightness(0.1);
+        filter: brightness(0.1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1, 0.1) translate3d(0, 0, 0);
+        -webkit-filter: brightness(0.1);
+        filter: brightness(0.1);
+        opacity: 1;
+    }
+    60% {
+        transform: scale(1, 0.2) translate3d(0, 0, 0);
+        -webkit-filter: brightness(0.2);
+        filter: brightness(0.2);
+        opacity: 1;
+    }
+    70% {
+        transform: scale(1, 0.4) translate3d(0, 0, 0);
+        -webkit-filter: brightness(0.4);
+        filter: brightness(0.4);
+        opacity: 1;
+    }
+    80% {
+        transform: scale(1, 0.6) translate3d(0, 0, 0);
+        -webkit-filter: brightness(0.6);
+        filter: brightness(0.6);
+        opacity: 1;
+    }
+    90% {
+        transform: scale(1, 0.8) translate3d(0, 0, 0);
+        -webkit-filter: brightness(0.8);
+        filter: brightness(0.8);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1, 1) translate3d(0, 0, 0);
+        -webkit-filter: brightness(1);
+        filter: brightness(1);
+        opacity: 1;
+    }
+}
+
+/* CRT effect */
+.crt-monitor::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    border-radius: 20px;
+}
+
+/* Responsive Design - Tablet and Mobile Styles */
+@media (max-width: 768px) {
+    /* Full screen monitor on mobile */
+    .crt-monitor {
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+        margin: 0;
+    }
+
+    .monitor-content {
+        padding: 10px;
+        height: 100%;
+    }
+    
+    .header-area {
+        margin-bottom: 10px;
+    }
+
+    .text-logo {
+        max-width: 90%;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .symbol-logo {
+        height: 60px;
+        margin: 5px 0;
+    }
+
+    .symbol {
+        width: 60px;
+        height: 60px;
+    }
+
+    .nav-menu {
+        padding: 5px 0;
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        gap: 5px;
+    }
+
+    .nav-menu li {
+        margin: 3px 0;
+    }
+
+    .nav-menu a {
+        font-size: 1.2em;
+        padding: 5px 15px;
+    }
+
+    .screen-wrapper {
+        margin: 10px 0;
+        padding: 15px;
+        min-height: 200px;
+    }
+
+    .manifesto-text {
+        font-size: 1em;
+        line-height: 1.5;
+    }
+
+    h1 {
+        font-size: 1.8em;
+        margin: 10px 0;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px 0;
+    }
+
+    .cta-buttons a {
+        margin: 0;
+        padding: 12px 20px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .section {
+        padding: 10px;
+    }
+}
+
+/* Small Mobile Devices - Extra adjustments for very small screens */
+@media (max-width: 480px) {
+    .monitor-content {
+        padding: 5px;
+    }
+
+    .text-logo {
+        max-width: 95%;
+    }
+
+    .symbol-logo {
+        height: 50px;
+    }
+
+    .symbol {
+        width: 50px;
+        height: 50px;
+    }
+
+    .screen-wrapper {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.6em;
+    }
+
+    .manifesto-text {
+        font-size: 0.95em;
+    }
+}
+
+.header-logo {
+    padding: 10px 0;
+}
+
+.symbol-logo {
+    padding: 5px 0;
+}

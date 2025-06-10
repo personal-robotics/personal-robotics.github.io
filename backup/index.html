@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic meta tags and title -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Robotics</title>
+
+    <!-- Stylesheets: main CSS, fonts, and icons -->
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- JavaScript for animations and interactions -->
+</head>
+<body>
+    <!-- Background container for the dark theme -->
+    <div class="background"></div>
+
+    <!-- Main CRT monitor container -->
+    <main class="crt-monitor">
+        <!-- Monitor content wrapper with border and padding -->
+        <div class="monitor-content">
+            <!-- Scanline effect for CRT animation -->
+            <div class="scanline"></div>
+
+            <!-- Fixed header area -->
+            <div class="header-area">
+                <!-- Header section with main text logo -->
+                <div class="header-logo">
+                    <img src="images/optimized/personal_robotics.png" alt="Personal Robotics" class="text-logo">
+                </div>
+
+                <!-- Navigation menu - Edit links here to add/remove sections -->
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#vision">Vision</a></li>
+                        <li><a href="#robots">Robots</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#legal">Legal</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Symbol logo below navigation -->
+                <div class="symbol-logo">
+                    <br>
+                    <img src="images/optimized/logo.png" alt="Personal Robotics Symbol" class="symbol">
+                </div>
+            </div>
+
+            <!-- Scrollable content area -->
+            <div class="screen-wrapper">
+                <!-- Sections will be loaded dynamically -->
+                <section id="hero" class="section hero-section" data-content="content/hero.html"></section>
+                <section id="vision" class="section vision-section" data-content="content/vision.html"></section>
+                <section id="robots" class="section robots-section" data-content="content/robots.html"></section>
+                <section id="contact" class="section contact-section" data-content="content/contact.html"></section>
+                <section id="legal" class="section legal-section" data-content="content/legal.html"></section>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
